@@ -1,0 +1,32 @@
+{
+	"name": "damalis/bagisto-iyzico",
+	"type": "library",
+	"description": "Iyzico payment gateway for bagisto",
+	"keywords": ["payment gateway", "payment", "bagisto", "iyzico", "iyzipay"],
+	"homepage": "https://github.com/damalis/bagisto-iyzico",
+	"license": "MIT",
+	"minimum-stability": "dev",
+	"authors": [
+		{
+			"name": "damalis",
+			"email": "erdal80@hotmail.com",
+			"homepage": "https://github.com/damalis"
+		}
+	],
+	"require": {
+		"iyzico/iyzipay-php": ">=2.0.54"
+	},
+	"autoload": {
+		"psr-4": {
+			"Damalis\\Iyzico\\": "src/"
+		}
+	},
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Damalis\\Iyzico\\Providers\\IyzicoServiceProvider"
+      ],
+      "aliases": {}
+    }
+  }
+}
