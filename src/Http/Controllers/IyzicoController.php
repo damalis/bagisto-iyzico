@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Damalis\Iyzico\Http\Controllers;
 
 use Webkul\Checkout\Facades\Cart;

@@ -2,7 +2,7 @@
 
 return [
     [
-        'key' => 'sales.paymentmethods.iyzicoPayment',
+        'key' => 'sales.paymentmethods.iyzico',
         'name' => 'Iyzico',
         'sort' => 5,
         'fields' => [

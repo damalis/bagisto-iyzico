@@ -4,7 +4,7 @@ namespace Damalis\Iyzico\Payment;
 
 use Webkul\Payment\Payment\Payment;
 
-class IyzicoPayment extends Payment
+class Iyzico extends Payment
 {
     /**
      * Payment method code
@@ -15,7 +15,6 @@ class IyzicoPayment extends Payment
 
     public function getRedirectUrl()
     {
-        return route('iyzico.process');
-        
+        return route('iyzico.checkout');        
     }
 }
