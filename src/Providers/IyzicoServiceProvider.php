@@ -23,6 +23,8 @@ class IyzicoServiceProvider extends ServiceProvider
     {
         include __DIR__ . '/../Http/routes.php';
 
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'iyzico');
+
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'iyzico');
 
         $this->app->register(IyzicoServiceProvider::class);
@@ -43,7 +45,7 @@ class IyzicoServiceProvider extends ServiceProvider
     {   
         //this will merge payment method
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/IyzicoPaymentMethods.php', 'paymentmethods'
+            dirname(__DIR__) . '/Config/paymentmethods.php', 'paymentmethods'
         );
 
         // add menu inside configuration  

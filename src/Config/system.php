@@ -3,46 +3,46 @@
 return [
     [
         'key' => 'sales.paymentmethods.iyzicoPayment',
-        'name' => 'iyzico::app.admin.system.iyzicoPayment',
+        'name' => 'Iyzico',
         'sort' => 5,
         'fields' => [
             [
                 'name' => 'title',
-                'title' => 'iyzico::app.admin.system.title',
+                'title' => 'admin::app.admin.system.title',
                 'type' => 'text',
                 'validation' => 'required',
                 'channel_based' => true,
                 'locale_based' => true
             ],[
                 'name' => 'description',
-                'title' => 'iyzico::app.admin.system.description',
+                'title' => 'admin::app.admin.system.description',
                 'type' => 'textarea',
                 'validation' => 'required',
                 'channel_based' => false,
                 'locale_based' => true
             ],[
                 'name' => 'public_key',
-                'title' => 'iyzico::app.admin.system.public-key',
+                'title' => 'iyzico::app.admin.system.public_key',
                 'type' => 'text',
                 'validation' => 'required',
                 'channel_based' => true,
                 'locale_based' => true
             ],[
                 'name'          => 'secret_key',
-                'title'         => 'admin::app.admin.system.secret-key',
+                'title'         => 'iyzico::app.admin.system.secret_key',
                 'type'          => 'text',
                 'validation'    => 'required',
                 'channel_based' => false,
                 'locale_based'  => true,
             ],[
                 'name' => 'sandbox',
-                'title' => 'iyzico::app.admin.system.sandbox',
+                'title' => 'admin::app.admin.system.sandbox',
                 'type' => 'boolean',
                 'channel_based' => false,
                 'locale_based'  => true
             ],[
                 'name' => 'active',
-                'title' => 'iyzico::app.admin.system.status',
+                'title' => 'admin::app.admin.system.status',
                 'type' => 'select',
                 'options' => [
                     [
@@ -54,28 +54,6 @@ return [
                     ]
                 ],
                 'validation' => 'required'
-            ],[
-                'name' => 'paymentfromapplicablecountries',
-                'title' => 'iyzico::app.admin.system.paymentFromApplicableCountries',
-                'type' => 'select',
-                'options' => [
-                    [
-                        'title' => 'All Allowed Countries',
-                        'value' => false
-                    ], [
-                        'title' => 'Specific Countries',
-                        'value' => true
-                    ]
-                ],
-                'validation' => 'required'
-            ],[
-                'name' => 'paymentfromspecificcountries',
-                'title' => 'iyzico::app.admin.system.paymentFromSpecificCountries',
-                'info' => 'Applicable if specific countries are selected',
-                'type' => 'multiselect',
-                'channel_based' => true,
-                'locale_based' => true,
-                'repository'=>'Damalis\Iyzico\Repositories\IyzicoRepository@getCountry'
             ],[
                 'name' => 'sort',
                 'title' => 'iyzico::app.admin.system.sort',
