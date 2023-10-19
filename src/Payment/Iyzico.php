@@ -15,6 +15,6 @@ class Iyzico extends Payment
 
     public function getRedirectUrl()
     {
-        return route('iyzico.checkout');        
+        return route('iyzico.payment.checkout');        
     }
 }

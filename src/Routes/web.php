@@ -1,18 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use Damalis\Iyzico\Providers;
-use Damalis\Iyzico\Http\Controllers;
-
-/*
-Route::group(['middleware' => ['web', 'admin']], function () {
-    Route::get('iyzico-payment-redirect','Damalis\Iyzico\Providers\HookServiceProvider@checkoutWithIyzico')->name('iyzico.process');
-    Route::post('iyzico-payment-callback','Damalis\Iyzico\Http\Controllers\IyzicoController@paymentCallback')->name('iyzico.callback'); 
-});
-*/
+use App\Http\Middleware\VerifyCsrfToken;
 
 Route::group(['middleware' => ['web', 'theme', 'locale', 'currency']], function () {
-    Route::get('iyzico-payment-checkout',[HookServiceProvider::class, 'checkoutWithIyzico'])->name('iyzico.checkout');
-    Route::post('iyzico-payment-callback',[IyzicoController::class, 'paymentCallback'])->name('iyzico.callback'); 
+    Route::get('iyzico-payment-checkout',[Damalis\Iyzico\Http\Controllers\IyzicoController::class, 'checkoutWithIyzico'])->name('iyzico.payment.checkout');
+    Route::post('iyzico-payment-callback/{token}',[Damalis\Iyzico\Http\Controllers\IyzicoController::class, 'paymentCallback'])->withoutMiddleware(VerifyCsrfToken::class)->name('iyzico.payment.callback'); 
 });

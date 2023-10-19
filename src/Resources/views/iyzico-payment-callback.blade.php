@@ -5,5 +5,5 @@
 @stop
 
 @push('scripts')
-<?php echo $paymentcontent_msg ?>;
+    <?php echo $paymentcontent_msg; ?>
 @endpush
