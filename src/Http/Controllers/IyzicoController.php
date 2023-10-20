@@ -126,7 +126,7 @@ class IyzicoController extends Controller
             return redirect()->route('shop.checkout.cart.index'); 
         } else {					
             //$request->session()->put('paymentcontent_msg', $checkoutFormInitialize->getCheckoutFormContent());
-		    $paymentcontent_msg = $checkoutFormInitialize->getCheckoutFormContent();        
+            $paymentcontent_msg = $checkoutFormInitialize->getCheckoutFormContent();        
             return view('iyzico::iyzico-payment-callback')->with(compact('paymentcontent_msg'));
         }
     }
