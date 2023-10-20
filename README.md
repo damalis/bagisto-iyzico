@@ -1,4 +1,4 @@
-# [botble iyzico](https://github.com/damalis/bagisto-iyzico)
+# [bagisto iyzico](https://github.com/damalis/bagisto-iyzico)
 
 Iyzico payment gateway for [Bagisto Laravel ecommerce](https://bagisto.com/)
 
