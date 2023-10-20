@@ -11,7 +11,7 @@ return [
                 'title' => 'admin::app.admin.system.title',
                 'type' => 'text',
                 'validation' => 'required',
-                'channel_based' => true,
+                'channel_based' => false,
                 'locale_based' => true
             ],[
                 'name' => 'description',
@@ -25,7 +25,7 @@ return [
                 'title' => 'iyzico::app.admin.system.public_key',
                 'type' => 'text',
                 'validation' => 'required',
-                'channel_based' => true,
+                'channel_based' => false,
                 'locale_based' => true
             ],[
                 'name'          => 'secret_key',
@@ -43,37 +43,11 @@ return [
             ],[
                 'name' => 'active',
                 'title' => 'admin::app.admin.system.status',
-                'type' => 'select',
-                'options' => [
-                    [
-                        'title' => 'Active',
-                        'value' => true
-                    ], [
-                        'title' => 'Inacitve',
-                        'value' => false
-                    ]
-                ],
-                'validation' => 'required'
-            ],[
-                'name' => 'sort',
-                'title' => 'iyzico::app.admin.system.sort',
-                'type' => 'select',
-                'options' => [
-                    [
-                        'title' => '1',
-                        'value' => 1
-                    ], [
-                        'title' => '2',
-                        'value' => 2
-                    ], [
-                        'title' => '3',
-                        'value' => 3
-                    ], [
-                        'title' => '4',
-                        'value' => 4
-                    ]
-                ],
-            ]      
+                'type' => 'boolean',                
+                'validation' => 'required',
+                'channel_based' => false,
+                'locale_based'  => true
+            ]     
         ],
     ],
    

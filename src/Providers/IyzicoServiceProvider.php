@@ -3,12 +3,11 @@
 namespace Damalis\Iyzico\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Webkul\Core;
  
 /**
  *  Iyzico service provider
  *
- * @author    damalis
+ * @author  damalis
  */
 class IyzicoServiceProvider extends ServiceProvider
 {
@@ -22,7 +21,7 @@ class IyzicoServiceProvider extends ServiceProvider
     public function boot()
     {
 		
-		$this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
 
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'iyzico');
 
@@ -40,6 +39,11 @@ class IyzicoServiceProvider extends ServiceProvider
         $this->registerConfig();
     }
 
+    /**
+     * Register package config.
+     *
+     * @return void
+     */
     protected function registerConfig()
     {   
         //this will merge payment method

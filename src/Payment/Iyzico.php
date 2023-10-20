@@ -13,6 +13,11 @@ class Iyzico extends Payment
      */
     protected $code  = 'iyzico';
 
+    /**
+    * Get redirect url.
+    *
+    * @var string
+    */
     public function getRedirectUrl()
     {
         return route('iyzico.payment.checkout');        
