@@ -22,16 +22,24 @@ return [
                 'locale_based' => true
             ],[
                 'name' => 'public_key',
-                'title' => 'iyzico::app.admin.system.public_key',
+                'title' => 'iyzico::app.admin.system.public-key',
                 'type' => 'text',
                 'validation' => 'required',
                 'channel_based' => false,
                 'locale_based' => true
             ],[
                 'name'          => 'secret_key',
-                'title'         => 'iyzico::app.admin.system.secret_key',
+                'title'         => 'iyzico::app.admin.system.secret-key',
                 'type'          => 'text',
                 'validation'    => 'required',
+                'channel_based' => false,
+                'locale_based'  => true,
+            ],[
+                'name'          => 'allowed_installments',
+                'title'         => 'iyzico::app.admin.system.allowed-installments',
+                'type'			=> 'text',
+                'validation'	=> 'numeric',
+				'default_value' => '0',
                 'channel_based' => false,
                 'locale_based'  => true,
             ],[
