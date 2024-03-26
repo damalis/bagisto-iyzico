@@ -2,7 +2,6 @@
 
 namespace Damalis\Iyzico\Http\Controllers;
 
-use Webkul\Core;
 use Iyzipay\Options;
 
 class IyzicoConfig
