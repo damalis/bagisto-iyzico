@@ -7,9 +7,12 @@ return [
             'title' => 'Title',
             'description' => 'Description',
             'status' => 'Status',
-            'public_key' => 'Public Key',
-            'secret_key' => 'Secret Key',
+			'sandbox' => 'Sandbox',
+            'public-key' => 'Public Key',
+            'secret-key' => 'Secret Key',
+			//'allowed-installments' => 'Allowed Installments',
             'sort' => 'Sort',
+			'info' => 'is a financial technology company facilitating online shopping experience for both shoppers and sellers.',
         ],
 
     ],'shop' => [
