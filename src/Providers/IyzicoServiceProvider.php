@@ -1,6 +1,6 @@
 <?php
  
-namespace Webkul\Damalis\Iyzico\Providers;
+namespace Damalis\Iyzico\Providers;
 
 use Illuminate\Support\ServiceProvider;
  
