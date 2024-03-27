@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\VerifyCsrfToken;
 
-use Damalis\Iyzico\Http\Controllers\IyzicoController;
+use Webkul\Damalis\Iyzico\Http\Controllers\IyzicoController;
 
 Route::group(['middleware' => ['web', 'theme', 'locale', 'currency']], function () {    
     Route::get('iyzico-payment-checkout', [
