@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\Damalis\Iyzico\Http\Controllers;
+namespace Damalis\Iyzico\Http\Controllers;
 
 use Iyzipay\Options;
 
