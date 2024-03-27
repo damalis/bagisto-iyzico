@@ -1,6 +1,6 @@
 <?php
  
-namespace Damalis\Iyzico\Providers;
+namespace Webkul\Damalis\Iyzico\Providers;
 
 use Illuminate\Support\ServiceProvider;
  
@@ -48,7 +48,7 @@ class IyzicoServiceProvider extends ServiceProvider
     {   
         //this will merge payment method
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/paymentmethods.php', 'paymentmethods'
+            dirname(__DIR__) . '/Config/paymentmethods.php', 'payment_methods'
         );
 
         // add menu inside configuration  
