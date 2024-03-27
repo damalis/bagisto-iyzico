@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\Damalis\Iyzico\Payment;
+namespace Damalis\Iyzico\Payment;
 
 use Webkul\Payment\Payment\Payment;
 
