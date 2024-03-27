@@ -17,19 +17,8 @@ composer require damalis/bagisto-iyzico
 
 then
 
-add below code in the ./config/app.php file
-
 ```
-'providers' => [
-	// Iyzico provider
-	Damalis\Iyzico\Providers\IyzicoServiceProvider::class,
-]
-```
-
-and
-
-```
-php artisan config:cache
+php artisan optimize:clear
 ```
 
 ## Usage
