@@ -1,13 +1,13 @@
 <?php
 
-namespace Webkul\Damalis\Iyzico\Http\Controllers;
+namespace Damalis\Iyzico\Http\Controllers;
 
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Illuminate\Http\Request;
 
-use Webkul\Damalis\Iyzico\Http\Controllers\IyzicoConfig;
+use Damalis\Iyzico\Http\Controllers\IyzicoConfig;
 use Iyzipay\Model\Address;
 use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\BasketItemType;
