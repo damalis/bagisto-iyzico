@@ -7,7 +7,7 @@ use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Illuminate\Http\Request;
 
-use Damalis\Iyzico\Http\Controllers\IyzicoConfig;
+use Webkul\Damalis\Iyzico\Http\Controllers\IyzicoConfig;
 use Iyzipay\Model\Address;
 use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\BasketItemType;
