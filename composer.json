@@ -18,13 +18,13 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Damalis\\Iyzico\\": "src/"
+			"Webkul\\Damalis\\Iyzico\\": "src/"
 		}
 	},
   "extra": {
     "laravel": {
       "providers": [
-        "Damalis\\Iyzico\\Providers\\IyzicoServiceProvider"
+        "Webkul\\Damalis\\Iyzico\\Providers\\IyzicoServiceProvider"
       ],
       "aliases": {}
     }
