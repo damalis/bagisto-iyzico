@@ -1,6 +1,6 @@
 <?php
 
-namespace Damalis\Iyzico\Http\Controllers;
+namespace Webkul\Damalis\Iyzico\Http\Controllers;
 
 use Iyzipay\Options;
 
@@ -10,8 +10,8 @@ class IyzicoConfig
     public function options()
     {
         $options = new Options();
-        $public = core()->getConfigData('sales.paymentmethods.iyzico.public_key');
-        $secret = core()->getConfigData('sales.paymentmethods.iyzico.secret_key');
+        $public = core()->getConfigData('sales.payment_methods.iyzico.public_key');
+        $secret = core()->getConfigData('sales.payment_methods.iyzico.secret_key');
         $options->setApiKey($public);
         $options->setSecretKey($secret);
         
@@ -28,7 +28,7 @@ class IyzicoConfig
      */
 	public function environment()
     { 
-        $iyzicoMode = core()->getConfigData('sales.paymentmethods.iyzico.sandbox');
+        $iyzicoMode = core()->getConfigData('sales.payment_methods.iyzico.sandbox');
 
         if ($iyzicoMode) {			
             return "https://sandbox-api.iyzipay.com";
