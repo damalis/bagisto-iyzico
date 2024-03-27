@@ -1,6 +1,6 @@
 <?php
 
-namespace Damalis\Iyzico\Http\Controllers;
+namespace Webkul\Damalis\Iyzico\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
