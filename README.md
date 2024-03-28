@@ -15,6 +15,15 @@ Iyzico payment gateway for [Bagisto Laravel ecommerce](https://bagisto.com/)
 composer require damalis/bagisto-iyzico
 ```
 
+- Goto ./config/app.php file and add following line under 'modules'
+
+```
+'providers' => [
+	// Iyzico provider
+	Damalis\Iyzico\Providers\IyzicoServiceProvider::class,
+]
+```
+
 - Run these commands below to complete the setup
 
 ```
