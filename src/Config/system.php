@@ -5,9 +5,6 @@ return [
         'key' => 'sales.payment_methods.iyzico',
         'name' => 'Iyzico',
 		'info' => 'iyzico::app.admin.system.info',
-		//'hot_file' => 'iyzico.png',
-		//'build_directory' => 'themes/blog/build',
-		//'package_assets_directory' => 'src/Resources/assets',
         'sort' => 5,
         'fields' => [
             [
