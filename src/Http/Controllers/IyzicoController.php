@@ -50,7 +50,7 @@ class IyzicoController extends Controller
     public function checkoutWithIyzico(Request $request)
     {   
         $cart = Cart::getCart();
-        $cartbillingAddress = $cart->billing_address;        
+        $cartbillingAddress = $cart->billing_address;
 		
         $checkoutToken = $request->session()->get('_token');
 		
@@ -78,26 +78,35 @@ class IyzicoController extends Controller
         $buyer->setIdentityNumber("74300864791");
         //$buyer->setLastLoginDate(date('Y-m-d H:i:s'));
         //$buyer->setRegistrationDate(date('Y-m-d H:i:s'));
-        $buyer->setRegistrationAddress($cartbillingAddress->address1 . " " . $cartbillingAddress->address2);
+        $buyer->setRegistrationAddress($cartbillingAddress->address);
         $buyer->setIp($request->ip());
         $buyer->setCity($cartbillingAddress->city);
         $buyer->setCountry($cartbillingAddress->country);
         $buyer->setZipCode($cartbillingAddress->postcode);
         $api->setBuyer($buyer);
-			
+
         $shippingAddress = new Address();
-        $shippingAddress->setContactName($cartbillingAddress->name);
+        $shippingAddress->setContactName($cartbillingAddress->first_name . ' ' . $cartbillingAddress->last_name);
         $shippingAddress->setCity($cartbillingAddress->city);
         $shippingAddress->setCountry($cartbillingAddress->country);
-        $shippingAddress->setAddress($cartbillingAddress->address1 . " " . $cartbillingAddress->address2);
-        $shippingAddress->setZipCode($cartbillingAddress->postcode);
-        $api->setShippingAddress($shippingAddress);
+        $shippingAddress->setAddress($cartbillingAddress->address);
+        $shippingAddress->setZipCode($cartbillingAddress->postcode);		
+		/*
+		if ( ! $cart->billing_address->use_for_shipping ) {
+			$cartshippingAddress = $cart->shipping_address;
+			$shippingAddress->setContactName($cartshippingAddress->first_name . ' ' . $cartshippingAddress->last_name);
+			$shippingAddress->setCity($cartshippingAddress->city);
+			$shippingAddress->setCountry($cartshippingAddress->country);
+			$shippingAddress->setAddress($cartshippingAddress->address);
+			$shippingAddress->setZipCode($cartshippingAddress->postcode);
+		}*/		
+        $api->setShippingAddress($shippingAddress);		
 			
         $billingAddress = new Address();
         $billingAddress->setContactName($cartbillingAddress->name);
         $billingAddress->setCity($cartbillingAddress->city);
         $billingAddress->setCountry($cartbillingAddress->country);
-        $billingAddress->setAddress($cartbillingAddress->address1 . " " . $cartbillingAddress->address2);
+        $billingAddress->setAddress($cartbillingAddress->address);
         $billingAddress->setZipCode($cartbillingAddress->postcode);
         $api->setBillingAddress($billingAddress);
 				
@@ -142,7 +151,7 @@ class IyzicoController extends Controller
              */
             $api = new RetrieveCheckoutFormRequest();
             $api->setLocale($request->getLocale());
-            $api->setConversationId($request->session()->get('tracked_start_checkout'));
+            $api->setConversationId($request->session()->get('_token'));
             $api->setToken($request->input('token'));
             
             # make request
@@ -165,7 +174,7 @@ class IyzicoController extends Controller
         Cart::deActivateCart();
         session()->flash('order', $order);
         // Order and prepare invoice
-        return redirect()->route('shop.checkout.success');
+        return redirect()->route('shop.checkout.onepage.success');
     }	
     
     /**
