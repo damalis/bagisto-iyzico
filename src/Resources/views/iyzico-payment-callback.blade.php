@@ -1,7 +1,7 @@
 <x-shop::layouts.account>
     <!-- Title of the page -->
     <x-slot:title>
-        @lang('blog::app.shop.blogs.page-title')
+        @lang('iyzico::app.admin.system.iyzicoPayment')
     </x-slot:title>
 
     <div class="flex justify-between items-center">
