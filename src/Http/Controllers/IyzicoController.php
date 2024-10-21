@@ -170,7 +170,7 @@ class IyzicoController extends Controller
         $cart = Cart::getCart();
         $data = (new OrderResource($cart))->jsonSerialize(); // new class v2.2
         $order = $this->orderRepository->create($data);
-		//$order = $this->orderRepository->create(Cart::prepareDataForOrder()); // removed for v2.2
+        //$order = $this->orderRepository->create(Cart::prepareDataForOrder()); // removed for v2.2
         $this->orderRepository->update(['status' => 'processing'], $order->id);
         if ($order->canInvoice()) {
             $this->invoiceRepository->create($this->prepareInvoiceData($order));
