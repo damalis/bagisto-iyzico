@@ -1,7 +1,7 @@
 const { mix } = require("laravel-mix");
 require("laravel-mix-merge-manifest");
 
-var publicPath = "../../../public/vendor/damalis/iyzico/assets";
+var publicPath = "../../../public/vendor/damalis/bagisto-iyzico/assets";
 
 
 mix.setPublicPath(publicPath).mergeManifest();

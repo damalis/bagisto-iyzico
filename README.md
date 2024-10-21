@@ -30,3 +30,5 @@ php artisan optimize:clear
 Go to Admin -> Configuration -> Sales -> Payment Methods -> Iyzico
 
 [Test account for payment](https://sandbox-merchant.iyzipay.com/auth/login)
+
+tried with Bagisto Version 2.2.3 product

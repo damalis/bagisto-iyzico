@@ -14,7 +14,7 @@
 		}
 	],
 	"require": {
-		"iyzico/iyzipay-php": ">=2.0.54"
+		"iyzico/iyzipay-php": ">=2.0.57"
 	},
 	"autoload": {
 		"psr-4": {
