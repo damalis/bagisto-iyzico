@@ -71,7 +71,11 @@ class IyzicoController extends Controller
         $api->setEnabledInstallments(array(2, 3, 6, 9));
 		
         $buyer = new Buyer();
-        $buyer->setId($cartbillingAddress->customer_id);
+        if( $cartbillingAddress->customer_id ) {
+		    $buyer->setId($cartbillingAddress->customer_id);
+        } else {
+            $buyer->setId($cart->id);
+        }
         $buyer->setName($cartbillingAddress->first_name);
         $buyer->setSurname($cartbillingAddress->last_name);
         $buyer->setGsmNumber($cartbillingAddress->phone);
