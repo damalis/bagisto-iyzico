@@ -180,7 +180,7 @@ class IyzicoController extends Controller
             $this->invoiceRepository->create($this->prepareInvoiceData($order));
         }
         Cart::deActivateCart();
-        session()->flash('order', $order);
+        session()->flash('order_id', $order->id);
         // Order and prepare invoice
         return redirect()->route('shop.checkout.onepage.success');
     }	
