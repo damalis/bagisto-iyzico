@@ -14,5 +14,7 @@
 				<?php echo $paymentcontent_msg; ?>
 			@endpush
         </h2>
+        <div id="iyzipay-checkout-form" class="popup">
+        </div>
     </div>
 </x-shop::layouts.account>
