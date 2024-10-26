@@ -21,6 +21,12 @@ composer require damalis/bagisto-iyzico
 composer dump-autoload
 ```
 
+- iyzico logo file will be copied to the specified location
+
+```
+php artisan vendor:publish --tag=iyzico --force
+```
+
 ```
 php artisan optimize:clear
 ```
@@ -30,5 +36,6 @@ php artisan optimize:clear
 Go to Admin -> Configuration -> Sales -> Payment Methods -> Iyzico
 
 [Test account for payment](https://sandbox-merchant.iyzipay.com/auth/login)
+[Test Card Details](https://docs.iyzico.com/en/add-ons/test-cards)
 
 tried with Bagisto Version 2.2.3 product
