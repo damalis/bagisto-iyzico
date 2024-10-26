@@ -68,7 +68,7 @@ class IyzicoController extends Controller
         $api->setBasketId($cart->id);
         $api->setPaymentGroup(PaymentGroup::PRODUCT);
         $api->setCallbackUrl(request()->getSchemeAndHttpHost() . "/iyzico-payment-callback/" . $checkoutToken);
-        $api->setEnabledInstallments(array(2, 3, 6, 9));
+        $api->setEnabledInstallments(array(3, 6, 9, 12));
 		
         $buyer = new Buyer();
         if( $cartbillingAddress->customer_id ) {
