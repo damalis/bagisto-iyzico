@@ -13,13 +13,17 @@ use Iyzipay\Model\Address;
 use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\BasketItemType;
 use Iyzipay\Model\Buyer;
-use Iyzipay\Model\CheckoutFormInitialize;
+//use Iyzipay\Model\CheckoutFormInitialize;
+
+use Iyzipay\Model\PayWithIyzicoInitialize;
+use Iyzipay\Request\CreatePayWithIyzicoInitializeRequest;
+
 use Iyzipay\Model\Locale;
 use Iyzipay\Model\PaymentGroup;
 use Iyzipay\Options;
 use Iyzipay\Model\CheckoutForm;
 use Iyzipay\Request\RetrieveCheckoutFormRequest;
-use Iyzipay\Request\CreateCheckoutFormInitializeRequest;
+//use Iyzipay\Request\CreateCheckoutFormInitializeRequest;
 
 class IyzicoController extends Controller
 {
@@ -57,7 +61,8 @@ class IyzicoController extends Controller
 		
         /** @var IyzicoApiClient $api */				
         # create request class
-        $api = new CreateCheckoutFormInitializeRequest();
+        //$api = new CreateCheckoutFormInitializeRequest();
+        $api = new CreatePayWithIyzicoInitializeRequest();											
         $api->setLocale($request->getLocale());
         $api->setConversationId($checkoutToken);
         //$api->setPrice("1");
@@ -68,7 +73,7 @@ class IyzicoController extends Controller
         $api->setBasketId($cart->id);
         $api->setPaymentGroup(PaymentGroup::PRODUCT);
         $api->setCallbackUrl(request()->getSchemeAndHttpHost() . "/iyzico-payment-callback/" . $checkoutToken);
-        $api->setEnabledInstallments(array(3, 6, 9, 12));
+        //$api->setEnabledInstallments(array(3, 6, 9, 12));
 		
         $buyer = new Buyer();
         if( $cartbillingAddress->customer_id ) {
@@ -96,15 +101,15 @@ class IyzicoController extends Controller
         $shippingAddress->setCountry($cartbillingAddress->country);
         $shippingAddress->setAddress($cartbillingAddress->address);
         $shippingAddress->setZipCode($cartbillingAddress->postcode);		
-		/*
-		if ( ! $cart->billing_address->use_for_shipping ) {
-			$cartshippingAddress = $cart->shipping_address;
-			$shippingAddress->setContactName($cartshippingAddress->first_name . ' ' . $cartshippingAddress->last_name);
-			$shippingAddress->setCity($cartshippingAddress->city);
-			$shippingAddress->setCountry($cartshippingAddress->country);
-			$shippingAddress->setAddress($cartshippingAddress->address);
-			$shippingAddress->setZipCode($cartshippingAddress->postcode);
-		}*/		
+        /*
+        if ( ! $cart->billing_address->use_for_shipping ) {
+            $cartshippingAddress = $cart->shipping_address;
+            $shippingAddress->setContactName($cartshippingAddress->first_name . ' ' . $cartshippingAddress->last_name);
+            $shippingAddress->setCity($cartshippingAddress->city);
+            $shippingAddress->setCountry($cartshippingAddress->country);
+            $shippingAddress->setAddress($cartshippingAddress->address);
+            $shippingAddress->setZipCode($cartshippingAddress->postcode);
+        }*/
         $api->setShippingAddress($shippingAddress);		
 			
         $billingAddress = new Address();
@@ -133,15 +138,20 @@ class IyzicoController extends Controller
         $api->setPaidPrice(number_format((float)$cart->grand_total, 2, '.', ''));
          
         # make request
-        $checkoutFormInitialize = CheckoutFormInitialize::create($api, (new IyzicoConfig)->options());
+        //$checkoutFormInitialize = CheckoutFormInitialize::create($api, (new IyzicoConfig)->options());
+        $checkoutFormInitialize = PayWithIyzicoInitialize::create($api, (new IyzicoConfig)->options());
 
         if( $checkoutFormInitialize->getStatus() != "success" ) {
             session()->flash('error', $checkoutFormInitialize->geterrorCode() . ", message: " . $checkoutFormInitialize->geterrorMessage());
             return redirect()->route('shop.checkout.cart.index'); 
         } else {					
             //$request->session()->put('paymentcontent_msg', $checkoutFormInitialize->getCheckoutFormContent());
+            //$paymentPageUrl = $checkoutFormInitialize->getPaymentPageUrl();
+            $paymentPageUrl = $checkoutFormInitialize->getPayWithIyzicoPageUrl();
+            $checkoutFormInitialize->setPaymentPageUrl($paymentPageUrl);																						 
             $paymentcontent_msg = $checkoutFormInitialize->getCheckoutFormContent();        
-            return view('iyzico::iyzico-payment-callback')->with(compact('paymentcontent_msg'));
+            return redirect()->away($paymentPageUrl);
+            //return view('iyzico::iyzico-payment-callback')->with(compact('paymentcontent_msg'));
         }
     }
 
