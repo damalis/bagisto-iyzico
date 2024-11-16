@@ -149,7 +149,7 @@ class IyzicoController extends Controller
             //$paymentPageUrl = $checkoutFormInitialize->getPaymentPageUrl();
             $paymentPageUrl = $checkoutFormInitialize->getPayWithIyzicoPageUrl();
             $checkoutFormInitialize->setPaymentPageUrl($paymentPageUrl);																						 
-            $paymentcontent_msg = $checkoutFormInitialize->getCheckoutFormContent();        
+            //$paymentcontent_msg = $checkoutFormInitialize->getCheckoutFormContent();        
             return redirect()->away($paymentPageUrl);
             //return view('iyzico::iyzico-payment-callback')->with(compact('paymentcontent_msg'));
         }
