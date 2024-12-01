@@ -34,6 +34,7 @@ class IyzicoConfig
             return "https://sandbox-api.iyzipay.com";
         }
 
-        return "https://api.merchant.iyzico.com";
+        //return "https://api.merchant.iyzico.com";
+        return "https://api.iyzipay.com";
     }
 }
