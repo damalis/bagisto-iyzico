@@ -10,5 +10,5 @@ Route::group(['middleware' => ['web', 'theme', 'locale', 'currency']], function 
         IyzicoController::class, 'checkoutWithIyzico'])->name('iyzico.payment.checkout');    
     Route::post('iyzico-payment-callback/{token}', [
         IyzicoController::class, 'paymentCallback'
-    ])->withoutMiddleware(VerifyCsrfToken::class)->name('iyzico.payment.callback'); 
+    ])->withoutMiddleware([VerifyCsrfToken::class])->name('iyzico.payment.callback'); 
 });
