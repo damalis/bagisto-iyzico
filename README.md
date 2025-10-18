@@ -25,7 +25,6 @@ Iyzico payment gateway for [Bagisto Laravel ecommerce](https://bagisto.com/)
 > Cancel can be processed on the same day as the payment and does not create any input/output entries on the card statement.
 - **Real-time Status Updates:** Instant updates after refund and cancel processing
 - **Refund and Cancel History Tracking:** Complete audit trail of all refund and cancel transactions
-- **Payment Method Icon:** Upload a custom icon for the payment methods selection page (recommended: 100x50px)
 
 #### With this project you can quickly run the following:
 
