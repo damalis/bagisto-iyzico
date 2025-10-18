@@ -17,13 +17,19 @@ Iyzico payment gateway for [Bagisto Laravel ecommerce](https://bagisto.com/)
 #### Features
 
 **Secure API Integration:** Direct integration with Iyzico Refund and Cancel API
+
 > [!IMPORTANT]
 > It is strictly not recommended to use the Refund V2 service for orders with more than one product in the basket.
+
 **Partial & Full Refunds:** Support for both partial and complete refund amounts
+
 **Order Cancel:** Cancel are not supporting partial amounts.
+
 > [!IMPORTANT]
 > Cancel can be processed on the same day as the payment and does not create any input/output entries on the card statement.
+
 **Real-time Status Updates:** Instant updates after refund and cancel processing
+
 **Refund and Cancel History Tracking:** Complete audit trail of all refund and cancel transactions
 
 **Payment Method Icon:** Upload a custom icon for the payment methods selection page (recommended: 100x50px)
