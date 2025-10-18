@@ -2,6 +2,7 @@
  
 namespace Damalis\Iyzico\Providers;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
  
 /**
@@ -30,6 +31,9 @@ class IyzicoServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Resources/assets' => public_path('/vendor/damalis/iyzico/assets'),
         ], 'iyzico');
+		
+		Event::listen('sales.refund.save.after', 'Damalis\Iyzico\Listeners\IyzicoRefund@afterCreated');
+		Event::listen('sales.order.cancel.after', 'Damalis\Iyzico\Listeners\IyzicoCancel@afterCanceled');
 
     }
  

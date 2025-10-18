@@ -5,19 +5,20 @@ namespace Damalis\Iyzico\Http\Controllers;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Transformers\OrderResource;
+use Webkul\Checkout\Repositories\CartRepository;												
 use Webkul\Sales\Repositories\InvoiceRepository;
+
 use Illuminate\Http\Request;
 
 use Damalis\Iyzico\Http\Controllers\IyzicoConfig;
+
 use Iyzipay\Model\Address;
 use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\BasketItemType;
 use Iyzipay\Model\Buyer;
 //use Iyzipay\Model\CheckoutFormInitialize;
-
 use Iyzipay\Model\PayWithIyzicoInitialize;
 use Iyzipay\Request\CreatePayWithIyzicoInitializeRequest;
-
 use Iyzipay\Model\Locale;
 use Iyzipay\Model\PaymentGroup;
 use Iyzipay\Options;
@@ -33,6 +34,11 @@ class IyzicoController extends Controller
      * @var \Webkul\Sales\Repositories\OrderRepository
      */
     protected $orderRepository;
+     * Cart repository instance
+     *
+     * @var CartRepository
+     */
+    protected $cartRepository;
     /**
      * InvoiceRepository $invoiceRepository
      *
@@ -44,11 +50,14 @@ class IyzicoController extends Controller
      * Create a new controller instance.
      *
      * @param  \Webkul\Attribute\Repositories\OrderRepository  $orderRepository
+	 * @param CartRepository $cartRepository
+	 * @param InvoiceRepository $invoiceRepository
      * @return void
      */
-    public function __construct(OrderRepository $orderRepository,  InvoiceRepository $invoiceRepository)
+    public function __construct(OrderRepository $orderRepository,  CartRepository $cartRepository, InvoiceRepository $invoiceRepository)
     {
         $this->orderRepository = $orderRepository;
+		$this->cartRepository = $cartRepository;
         $this->invoiceRepository = $invoiceRepository;
     }
 
@@ -143,6 +152,11 @@ class IyzicoController extends Controller
 
         if( $checkoutFormInitialize->getStatus() != "success" ) {
             session()->flash('error', $checkoutFormInitialize->geterrorCode() . ", message: " . $checkoutFormInitialize->geterrorMessage());
+            Log::error('Iyzico payment either cancelled or transaction failure.', [
+                'conversation_id' => $checkoutFormInitialize->getConversationId,
+                'error' => $checkoutFormInitialize->geterrorMessage(),
+                'error_code' => $checkoutFormInitialize->geterrorCode()
+            ]);
             return redirect()->route('shop.checkout.cart.index'); 
         } else {					
             //$request->session()->put('paymentcontent_msg', $checkoutFormInitialize->getCheckoutFormContent());
@@ -174,11 +188,16 @@ class IyzicoController extends Controller
             
             if(strtolower($checkoutForm->getPaymentStatus()) !== \Iyzipay\Model\Status::SUCCESS) {
                 session()->flash('error', 'Iyzico payment either cancelled or transaction failure.');
+                Log::error('Iyzico payment either cancelled or transaction failure.', [
+                    'conversation_id' => $checkoutForm->getConversationId,
+                    'error' => $checkoutForm->getErrorMessage(),
+                    'error_code' => $checkoutForm->getErrorCode()
+                ]);
                 return redirect()->route('shop.checkout.cart.index');                
             }
-        } catch (SignatureVerificationError $e) {
-                $success = false;
-                $error = 'Iyzico Error : ' . $e->getMessage();
+        } catch (\Exception $e) {
+            Log::error('Iyzico', ['error' => $e->getMessage()]);
+            throw $e;
         }
 
         $cart = Cart::getCart();
@@ -186,6 +205,12 @@ class IyzicoController extends Controller
         $order = $this->orderRepository->create($data);
         //$order = $this->orderRepository->create(Cart::prepareDataForOrder()); // removed for v2.2
         $this->orderRepository->update(['status' => 'processing'], $order->id);
+		// Add payment information to order
+        $order->payment->update([
+            'additional' => array_merge($order->payment->additional ?? [], [
+                'damalis_payment_id' => $checkoutForm->getPaymentId() ?? null,
+            ]),
+        ]);
         if ($order->canInvoice()) {
             $this->invoiceRepository->create($this->prepareInvoiceData($order));
         }

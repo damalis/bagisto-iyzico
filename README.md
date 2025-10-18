@@ -7,6 +7,27 @@ Iyzico payment gateway for [Bagisto Laravel ecommerce](https://bagisto.com/)
 <a href="https://bagisto.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/43133047?s=200&v=4" alt="bagisto laravel ecommerce" width="150px" /> </a>
 </p>
 
+#### Key Benefits
+
+**Easy Configuration:** User-friendly admin interface with clear options
+**Clear Communication:** Progress indicators and security messaging
+**Fast Loading:** Optimized performance for quick payments
+**Consistent Branding:** Seamless integration with your store design
+
+#### Features
+
+**Secure API Integration:** Direct integration with Iyzico Refund and Cancel API
+> [!IMPORTANT]
+> It is strictly not recommended to use the Refund V2 service for orders with more than one product in the basket.
+**Partial & Full Refunds:** Support for both partial and complete refund amounts
+**Order Cancel:** Cancel are not supporting partial amounts.
+> [!IMPORTANT]
+> Cancel can be processed on the same day as the payment and does not create any input/output entries on the card statement.
+**Real-time Status Updates:** Instant updates after refund and cancel processing
+**Refund and Cancel History Tracking:** Complete audit trail of all refund and cancel transactions
+
+**Payment Method Icon:** Upload a custom icon for the payment methods selection page (recommended: 100x50px)
+
 #### With this project you can quickly run the following:
 
 - [iyzico](https://github.com/iyzico/iyzipay-php)
@@ -31,7 +52,7 @@ php artisan vendor:publish --tag=iyzico --force
 ```
 
 ```
-php artisan optimize:clear
+php artisan optimize
 ```
 
 ### Usage
@@ -47,4 +68,4 @@ Go to **Admin >> Configuration >> Sales >> Payment Methods -> Iyzico**
 
 add |```SESSION_SAME_SITE=none```| in the .env file and run ```php artisan config:cache```.
 
-tried with Bagisto Version 2.3.7 product
+tested with Bagisto Version 2.3.7 product
