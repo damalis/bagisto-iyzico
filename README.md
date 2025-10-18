@@ -10,8 +10,11 @@ Iyzico payment gateway for [Bagisto Laravel ecommerce](https://bagisto.com/)
 #### Key Benefits
 
 **Easy Configuration:** User-friendly admin interface with clear options
+
 **Clear Communication:** Progress indicators and security messaging
+
 **Fast Loading:** Optimized performance for quick payments
+
 **Consistent Branding:** Seamless integration with your store design
 
 #### Features
@@ -19,7 +22,7 @@ Iyzico payment gateway for [Bagisto Laravel ecommerce](https://bagisto.com/)
 **Secure API Integration:** Direct integration with Iyzico Refund and Cancel API
 
 > [!IMPORTANT]
-> It is strictly not recommended to use the Refund V2 service for orders with more than one product in the basket.
+> It is strictly not recommended to use the Refund service for orders with more than one product in the basket.
 
 **Partial & Full Refunds:** Support for both partial and complete refund amounts
 
