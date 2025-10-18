@@ -159,7 +159,9 @@ class IyzicoController extends Controller
                 'error_code' => $checkoutFormInitialize->geterrorCode()
             ]);
             return redirect()->route('shop.checkout.cart.index'); 
-        } else {					
+        } else {
+            // Store cart id in session for callback
+            session(['damalis_cart_id' => $cart->id]);			
             //$request->session()->put('paymentcontent_msg', $checkoutFormInitialize->getCheckoutFormContent());
             //$paymentPageUrl = $checkoutFormInitialize->getPaymentPageUrl();
             $paymentPageUrl = $checkoutFormInitialize->getPayWithIyzicoPageUrl();
@@ -201,7 +203,8 @@ class IyzicoController extends Controller
             throw $e;
         }
 
-        $cart = Cart::getCart();
+        //$cart = Cart::getCart();
+        $cart = $this->cartRepository->find(session('damalis_cart_id'));
         $data = (new OrderResource($cart))->jsonSerialize(); // new class v2.2
         $order = $this->orderRepository->create($data);
         //$order = $this->orderRepository->create(Cart::prepareDataForOrder()); // removed for v2.2
