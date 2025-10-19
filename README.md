@@ -64,6 +64,6 @@ Go to **Admin >> Configuration >> Sales >> Payment Methods -> Iyzico**
 
 #### if You don't see the "Thank you for your order!" page in your browser after success payment.
 
-add |```SESSION_SAME_SITE=none```| in the .env file and run ```php artisan config:cache```.
+add |```SESSION_SAME_SITE=null```| in the .env file and run ```php artisan config:cache```.
 
 tested with Bagisto Version 2.3.7 product
