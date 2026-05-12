@@ -2,10 +2,8 @@
 
 Iyzico payment gateway for [Bagisto Laravel ecommerce](https://bagisto.com/)
 
-<p align="left">
-<a href="https://www.iyzico.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/3815564?s=200&v=4" alt="iyzico" width="150px" /> </a>&nbsp;&nbsp;&nbsp;
-<a href="https://bagisto.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/43133047?s=200&v=4" alt="bagisto laravel ecommerce" width="150px" /> </a>
-</p>
+[![iyzico](https://img.shields.io/badge/Payment-iyzico-1e64ff?style=for-the-badge&logo=iyzico&logoColor=white)](https://iyzico.com)
+[![Bagisto](https://img.shields.io/badge/eCommerce-Bagisto-0141FF?style=for-the-badge&logo=bagisto&logoColor=white)](https://bagisto.com/)
 
 #### Key Benefits
 
